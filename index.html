@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Jeepney Tracker | Baguio City</title>
+    <style>
+        :root {
+            --main-bg: #ede0d4;
+            --primary: #7f5539;
+            --accent: #a47148;
+            --light: #f5ebe0;
+            --dark: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--main-bg);
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 60px;
+            /* Space for footer */
+        }
+
+        .background-image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        header {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 75px;
+            width: auto;
+            margin-right: 0.75rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        nav a.active {
+            background-color: var(--light);
+            color: var(--primary);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .auth-buttons a {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .auth-buttons a:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .welcome-message {
+            font-weight: bold;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .welcome-message button {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .welcome-message button:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .hero {
+            padding: 4rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: black;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: var(--primary);
+        }
+
+        .section {
+            padding: 2rem;
+            background-color: #f8f8f8;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: var(--accent);
+            color: white;
+            text-align: center;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem;
+            }
+
+            .logo-container img {
+                height: 60px;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                padding: 0.2rem 0.4rem;
+            }
+
+            .auth-buttons {
+                gap: 0.5rem;
+            }
+
+            .auth-buttons a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .button-container a {
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section p {
+                font-size: 0.9rem;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image-container">
+        <img src="c:\Users\pc\Desktop\Final\baguio.jpg" alt="Baguio City" />
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img src="c:\Users\pc\Desktop\Final\FIN.png" alt="JeepneyBooking logo" />
+            <div><strong>Modern Jeepney Tracker </strong></div>
+        </div>
+
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="book.html">Book a Ride</a>
+            <a href="sched.html">Schedule</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="auth-buttons" id="auth-section">
+            </div>
+    </header>
+
+    <section class="hero">
+        <h1>Catch a Jeepney, Hassle-Free</h1>
+        <p>
+            Book your seat ahead of time and skip the long lines. Fast, simple,
+            and guaranteed rides in Baguio City.
+        </p>
+    </section>
+
+    <div class="button-container">
+        <a href="choose.html">Book Now</a>
+    </div>
+
+    <section class="section">
+        <h2>Why Use JeepneyBooking?</h2>
+        <p>
+            Whether you're heading to work or school, our system helps you
+            reserve a jeepney seat at your preferred time. No more waiting in
+            line or worrying about full rides. It's time to modernize your daily
+            commute.
+        </p>
+    </section>
+
+    <footer>
+        &copy; 2025 JeepneyBooking. Made in Baguio City 🇵🇭
+    </footer>
+
+    <script>
+        const authSection = document.getElementById('auth-section');
+        const user = sessionStorage.getItem('loggedInUser'); // Check if user is logged in
+
+        if (user) {
+            authSection.innerHTML = `
+        <div class="welcome-message">
+          Welcome, ${user}! <button onclick="logout()">Logout</button> </div>
+      `;
+        } else {
+            authSection.innerHTML = `
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+      `;
+        }
+
+        function logout() {
+            sessionStorage.removeItem('loggedInUser'); // Remove user from session storage
+            window.location.href = 'index.html'; // Redirect to home
+        }
+    </script>
+</body>
+
+</html>
